@@ -24,7 +24,7 @@ $ composer require nomensa/bulk-inserter
 The following example will insert a thousand users in a few seconds.
 
 ```php
-use Nomensa/BulkInserter;
+use Nomensa\BulkInserter;
 
 class ExampleSeeder
 {
