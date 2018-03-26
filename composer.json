@@ -1,0 +1,30 @@
+{
+    "name": "nomensa/bulk-inserter",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Joiner",
+            "email": "martin@martinjoiner.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "~7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nomensa\\BulkInserter\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Nomensa\\BulkInserter\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit tests --colors=always"
+    }
+}
