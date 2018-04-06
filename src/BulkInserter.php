@@ -4,6 +4,7 @@ namespace Nomensa\BulkInserter;
 
 use Storage;
 use DB;
+use Nomensa\BulkInserter\Exceptions\InvalidRowException;
 
 /**
  * A super-fast way of inserting many items by creating a .sql dump file and importing it.
@@ -126,9 +127,14 @@ class BulkInserter
 
     /**
      * @param string $row - Some like "( 23, 'Horse Racing', 'Giddy up' )"
+     *
+     * @throws InvalidSchemaException
      */
     public function addRow($row)
     {
+        if (substr_count($row,',') < count($this->columns)-1) {
+            throw new InvalidRowException('Row contains fewer values than there are columns');
+        }
         $this->rows[] = $row;
     }
 
