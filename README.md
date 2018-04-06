@@ -2,29 +2,32 @@
 
 _Note: This helper library is specific to the Laravel framework_
 
-If you are stress-testing your new application to see how it will behave with a realistic future amount 
-of data then you are probably writing a seeder which inserts thousands of rows.
+If you are stress-testing your new application to see how it will behave with a realistic 
+future amount of data then you are probably writing a seeder which inserts thousands of rows.
 
-Using PHP to insert rows individually may be slow and hampering development or even breaching prepared
-statement limits.
+Using many individual queries in PHP to insert rows one-by-one may be slow and 
+hampering development or even breaching prepared statement limits.
 
-This package helps you utilise MySQLs native dump import which is way quicker than doing lots of individual
-inserts in a loop!
+This package utilises MySQLs native dump import so you can prepare the data inside your loop 
+and then plonk the whole lot in the database with 1 speedy operation which is way quicker 
+than doing lots of individual inserts!
 
  
 ## Install
 
 ```bash
-$ composer require nomensa/bulk-inserter
+$ composer require --dev -- nomensa/bulk-inserter
 ```
+
+_Note: Please install as a dev requirement only._
 
 
 ## Example
 
-The following example will insert a thousand users in a few seconds.
+The following example will insert a thousand users in a couple of seconds:
 
 ```php
-use Nomensa\BulkInserter;
+use Nomensa\BulkInserter\BulkInserter;
 
 class ExampleSeeder
 {
@@ -43,8 +46,17 @@ class ExampleSeeder
 }
 ```
 
-If the above task was written using the Eloquent model's '::create()' method is could take 
-up to a minute or even longer.
+If the above task was written using the Eloquent model's '::create()' method it could take
+ ~20 seconds. 
 
-When dealing with thousands of rows in multiple tables you are probably going to be re-seed
-many times so these time savings add up and make for a happier develop experience. 
+Multiply this delay across all your model's tables, factor in how many times you will tweak 
+and re-run your seeder during test writing and the time savings add. Using this package makes 
+for a much happier developer experience. 
+
+
+## Friendly reminder about exposing vulnerabilities!
+
+This package executes raw MySQL code in your database. DO NOT use this package in a production 
+environment and certainly NEVER populate the content of the rows via inputs from a request. 
+
+This package is for use during development and testing, not everyday application logic.
