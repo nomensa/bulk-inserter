@@ -1,6 +1,7 @@
 # Bulk Inserter
 
-_Note: This helper library is specific to the Laravel framework_
+_Note: This helper library is currently specific to the Laravel framework running with a 
+MySQL database._
 
 If you are stress-testing your new application to see how it will behave with a realistic 
 future amount of data then you are probably writing a seeder which inserts thousands of rows.
