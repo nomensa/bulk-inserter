@@ -128,7 +128,7 @@ class BulkInserter
     /**
      * @param string $row - Some like "( 23, 'Horse Racing', 'Giddy up' )"
      *
-     * @throws InvalidSchemaException
+     * @throws InvalidRowException
      */
     public function addRow($row)
     {
